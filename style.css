@@ -1,0 +1,12 @@
+body {
+    background-color: #d8d1d1;
+    color: rgb(53, 53, 53);
+}
+
+button {
+    color: rgb(53, 53, 53);
+}
+
+.list-item {
+    list-style-type: none;
+}
