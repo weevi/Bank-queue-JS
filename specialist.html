@@ -8,9 +8,33 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <ul id="clientsList"></ul>
 
-    <button onclick=deleteFirstChild()>Delete Client</button>
+        <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="title-wrap"><h4>Lankytojų sąrašas:</h4></div>
+                        <form>
+                            <div class="form-group">
+                                    <ul id="clientsList"></ul>
+        
+                            <label for="exampleFormControlInput1">Pasirinkite specialistą</label>
+                            <select id="specSelect" class="form-control" onChange="filterCustomers(this);">
+                                    <option disabled selected value> -- Pasirinkite Specialista -- </option>
+                                <option value="1" id="option1">Spec 1</option>
+                                <option value="2" id="option2">Spec 2</option>
+                                <option value="3" id="option3">Spec 3</option>
+                                <option value="4" id="option4">Spec 4</option>
+                            </select>
+                        </div>
+                    </form>
+                    <button onclick=deleteFirstChild()>Delete Client</button>
+                    </div>
+                            
+                    </div>
+                </div>
+ 
+
+   
 
     <script src="script.js"></script>
     <script src="specialist.js"></script>

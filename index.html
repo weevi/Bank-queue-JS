@@ -11,6 +11,13 @@
     <form>
       Name: <input id="myInput" type="text" name="name" />
       <button type="button" onclick=saveInputValue(); >Submit</button>
+      <select id="selectedSpecialist" onchange="setSpecialist()">
+        <option disabled selected value> -- select an option -- </option>
+        <option value="1">Spec One</option>
+        <option value="2">Spec Two</option>
+        <option value="3">Spec Three</option>
+        <option value="4">Spec Four</option>
+      </select>
       <button type="button" onclick=loadData(); >Load Data</button>
     </form>
     
