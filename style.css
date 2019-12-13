@@ -10,3 +10,8 @@ button {
 .list-item {
     list-style-type: none;
 }
+
+ul > li:first-child {
+    font-weight: bold;
+    color: rgb(61, 26, 26);
+}

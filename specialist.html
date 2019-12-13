@@ -18,7 +18,7 @@
                                     <ul id="clientsList"></ul>
         
                             <label for="exampleFormControlInput1">Pasirinkite specialistą</label>
-                            <select id="specSelect" class="form-control" onChange="filterCustomers(this);">
+                            <select id="specSelect" class="form-control" onChange="filterCustomers()">
                                     <option disabled selected value> -- Pasirinkite Specialista -- </option>
                                 <option value="1" id="option1">Spec 1</option>
                                 <option value="2" id="option2">Spec 2</option>
@@ -27,7 +27,7 @@
                             </select>
                         </div>
                     </form>
-                    <button onclick=deleteFirstChild()>Delete Client</button>
+                    <button onclick="deleteFirst()">Aptarnauta</button>
                     </div>
                             
                     </div>
