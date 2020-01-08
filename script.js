@@ -63,10 +63,19 @@ function generateNewClientNo() {
     return largest = largest + 1;
 }
 
+function getCurrentTime(){
+    var hour = new Date().getHours();
+    var minutes = ('0'+ new Date().getMinutes()).slice(-2);
+    var seconds = ('0'+ new Date().getSeconds()).slice(-2);
+    var startTime = hour + ':' + minutes + ':' + seconds;
+    return startTime;
+  }
+
 function saveInputValue() {
     var newClientNo = generateNewClientNo();
+    var time = getCurrentTime();
     inputValue = document.getElementById('myInput').value;
-    var newCustomer = { "specialistNo": Number(selectedSpecialist), "name": inputValue, "clientNo": newClientNo };
+    var newCustomer = { "specialistNo": Number(selectedSpecialist), "name": inputValue, "clientNo": newClientNo, "startTime": time };
     clients.push(newCustomer);
     localStorage.setItem("customer", JSON.stringify(clients));
 };
@@ -124,6 +133,8 @@ function deleteFirst() {
     localStorage.setItem("customer", JSON.stringify(retrievedNames));
     console.log(smallestClNumber);
     console.log("from deleteFirst function");
+    filterCustomers()
 };
+
 
 
