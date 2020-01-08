@@ -1,7 +1,9 @@
 var inputValue = '';
 var customers = '';
 var selectedSpecialist = '';
-var selectSpecialistForDelete = '';
+var selectClientForDelete = '';
+var names = '';
+var test = '';
 var clients = [{
     specialistNo: 1,
     name: 'Donny Joe',
@@ -48,6 +50,19 @@ function loadData() {
     localStorage.setItem("customer", JSON.stringify(clients));
 }
 
+function generateNewClientNo() {
+    var displayNames = localStorage.getItem("customer");
+    var retrievedNames = JSON.parse(displayNames);
+    var largest = 0;
+    for (var i = 0; i < retrievedNames.length; i++) {
+        if (selectedSpecialist == retrievedNames[i].specialistNo) {
+            if (retrievedNames[i].clientNo > largest)
+                largest = retrievedNames[i].clientNo;
+        }
+    }
+    return largest = largest + 1;
+}
+
 function saveInputValue() {
     var newClientNo = generateNewClientNo();
     inputValue = document.getElementById('myInput').value;
@@ -88,27 +103,27 @@ function filterCustomers() {
     customers = "";
 }
 
-function generateNewClientNo() {
+function findSmallest() {
     var displayNames = localStorage.getItem("customer");
     var retrievedNames = JSON.parse(displayNames);
-    var largest = 0;
+    var specialistsSelect = document.getElementById('specSelect').value;
     for (var i = 0; i < retrievedNames.length; i++) {
-        if (selectedSpecialist == retrievedNames[i].specialistNo) {
-            if (retrievedNames[i].clientNo > largest)
-                largest = retrievedNames[i].clientNo;
+        if (retrievedNames[i].specialistNo == specialistsSelect) {
+            return retrievedNames[i].clientNo;
         }
     }
-    return largest = largest + 1;
 }
 
 function deleteFirst() {
-    selectSpecialistForDelete = document.getElementById('specSelect').value;
     var displayNames = localStorage.getItem("customer");
     var retrievedNames = JSON.parse(displayNames);
-    for (var i = 0; i < retrievedNames.length; i++) {
-        if (selectSpecialistForDelete == retrievedNames[i].specialistNo) {
-            
-        }
-    }
-}
+    var specialistsSelect = document.getElementById('specSelect').value;
+    var smallestClNumber = findSmallest();
+    var removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(smallestClNumber);
+    retrievedNames.splice(removeClient, 1);
+    localStorage.setItem("customer", JSON.stringify(retrievedNames));
+    console.log(smallestClNumber);
+    console.log("from deleteFirst function");
+};
+
 
