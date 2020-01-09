@@ -1,6 +1,7 @@
 body {
-    background-color: #d8d1d1;
-    color: rgb(53, 53, 53);
+    background-color: #34495e;
+    color: white;
+    font-family: 'Roboto', sans-serif;
 }
 
 button {
@@ -13,5 +14,36 @@ button {
 
 ul > li:first-child {
     font-weight: bold;
-    color: rgb(61, 26, 26);
+    color: #3498db;
 }
+
+.wrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.spec-wrap {
+    border: 1px solid rgba(255, 255, 255, 0.315);
+    padding: 40px 40px 80px 40px;
+    margin: 20px;
+}
+
+ul {
+    padding: 0;
+}
+
+ul li {
+    letter-spacing: 1px;
+    line-height: 2em;
+    text-transform: uppercase;
+    margin-left: 20px;
+}
+
+h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.5em;
+    margin-top: 0;
+}
+

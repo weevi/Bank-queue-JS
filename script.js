@@ -47,7 +47,7 @@ var clients = [{
 ]
 
 function loadData() {
-    localStorage.setItem("customer", JSON.stringify(clients));
+    localStorage.setItem("customer", JSON.stringify(clients));   
 }
 
 function generateNewClientNo() {
@@ -82,7 +82,6 @@ function saveInputValue() {
 
 function setSpecialist() {
     selectedSpecialist = document.getElementById('selectedSpecialist').value;
-    console.log("setspec - " + selectedSpecialist);
 }
 
 function showClientsOnBoard() {
@@ -91,7 +90,7 @@ function showClientsOnBoard() {
     for (var j = 1; j <= 4; j++) {
         for (var i = 0; i < retrievedNames.length; i++) {
             if (retrievedNames[i].specialistNo == j) {
-                customers += '<li class="list-item">' + retrievedNames[i].name + ' ' + retrievedNames[i].clientNo + '</li>';
+                customers += '<li class="list-item">' + retrievedNames[i].name + '</li>';
             }
             document.getElementById(j).innerHTML = customers;
         }
