@@ -46,8 +46,18 @@ var clients = [{
 }
 ]
 
+function setInitialTime() {
+    for (var i = 0; i < clients.length; i++) {
+        var time = getCurrentTime();
+        clients[i].startTime = time;
+    }
+}
+
 function loadData() {
-    localStorage.setItem("customer", JSON.stringify(clients));   
+    if(window.localStorage.length == false){
+    setInitialTime();
+    localStorage.setItem("customer", JSON.stringify(clients));
+}
 }
 
 function generateNewClientNo() {
@@ -63,21 +73,25 @@ function generateNewClientNo() {
     return largest = largest + 1;
 }
 
-function getCurrentTime(){
+function getCurrentTime() {
     var hour = new Date().getHours();
-    var minutes = ('0'+ new Date().getMinutes()).slice(-2);
-    var seconds = ('0'+ new Date().getSeconds()).slice(-2);
+    var minutes = ('0' + new Date().getMinutes()).slice(-2);
+    var seconds = ('0' + new Date().getSeconds()).slice(-2);
     var startTime = hour + ':' + minutes + ':' + seconds;
     return startTime;
-  }
+}
 
 function saveInputValue() {
+    var displayNames = JSON.parse(localStorage.getItem("customer"));
     var newClientNo = generateNewClientNo();
     var time = getCurrentTime();
+    if (displayNames == null) {
+        displayNames = [];
+    }
     inputValue = document.getElementById('myInput').value;
     var newCustomer = { "specialistNo": Number(selectedSpecialist), "name": inputValue, "clientNo": newClientNo, "startTime": time };
-    clients.push(newCustomer);
-    localStorage.setItem("customer", JSON.stringify(clients));
+    displayNames.push(newCustomer);
+    localStorage.setItem("customer", JSON.stringify(displayNames));
 };
 
 function setSpecialist() {
