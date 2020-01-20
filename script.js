@@ -54,10 +54,10 @@ function setInitialTime() {
 }
 
 function loadData() {
-    if(window.localStorage.length == false){
-    setInitialTime();
-    localStorage.setItem("customer", JSON.stringify(clients));
-}
+    if (window.localStorage.length == false) {
+        setInitialTime();
+        localStorage.setItem("customer", JSON.stringify(clients));
+    }
 }
 
 function generateNewClientNo() {
@@ -73,11 +73,16 @@ function generateNewClientNo() {
     return largest = largest + 1;
 }
 
+// function getCurrentTime() {
+//     var hour = new Date().getHours();
+//     var minutes = ('0' + new Date().getMinutes()).slice(-2);
+//     var seconds = ('0' + new Date().getSeconds()).slice(-2);
+//     var startTime = hour + ':' + minutes + ':' + seconds;
+//     return startTime;
+// }
+
 function getCurrentTime() {
-    var hour = new Date().getHours();
-    var minutes = ('0' + new Date().getMinutes()).slice(-2);
-    var seconds = ('0' + new Date().getSeconds()).slice(-2);
-    var startTime = hour + ':' + minutes + ':' + seconds;
+    var startTime = new Date()
     return startTime;
 }
 
@@ -136,18 +141,33 @@ function findSmallest() {
     }
 }
 
-function deleteFirst() {
+function findInitialTime() {
     var displayNames = localStorage.getItem("customer");
     var retrievedNames = JSON.parse(displayNames);
     var specialistsSelect = document.getElementById('specSelect').value;
+    for (var i = 0; i < retrievedNames.length; i++) {
+        if (retrievedNames[i].specialistNo == specialistsSelect) {
+            return retrievedNames[i].startTime;
+        }
+    }
+}
+
+function deleteFirst() {
+    var displayNames = localStorage.getItem("customer");
+    var retrievedNames = JSON.parse(displayNames);
     var smallestClNumber = findSmallest();
+    var time = getCurrentTime();
     var removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(smallestClNumber);
+    var initialTime = findInitialTime();
     retrievedNames.splice(removeClient, 1);
     localStorage.setItem("customer", JSON.stringify(retrievedNames));
-    console.log(smallestClNumber);
-    console.log("from deleteFirst function");
     filterCustomers()
+    initialTime = new Date(initialTime);
+    var nowTimeStamp = new Date();
+    var startTime = (new Date(initialTime)).getTime();
+    var deleteTimeStamp = nowTimeStamp.getTime();
+    var microSecondsDiff = Math.abs(deleteTimeStamp - startTime);
+    var timeDiff = Math.floor(microSecondsDiff / 1000);
+    console.log(timeDiff);
 };
-
-
 
