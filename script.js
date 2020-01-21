@@ -73,14 +73,6 @@ function generateNewClientNo() {
     return largest = largest + 1;
 }
 
-// function getCurrentTime() {
-//     var hour = new Date().getHours();
-//     var minutes = ('0' + new Date().getMinutes()).slice(-2);
-//     var seconds = ('0' + new Date().getSeconds()).slice(-2);
-//     var startTime = hour + ':' + minutes + ':' + seconds;
-//     return startTime;
-// }
-
 function getCurrentTime() {
     var startTime = new Date()
     return startTime;
@@ -144,13 +136,23 @@ function findSmallest() {
 function findInitialTime() {
     var displayNames = localStorage.getItem("customer");
     var retrievedNames = JSON.parse(displayNames);
-    var specialistsSelect = document.getElementById('specSelect').value;
+    var specialistSelect = document.getElementById('specSelect').value;
     for (var i = 0; i < retrievedNames.length; i++) {
-        if (retrievedNames[i].specialistNo == specialistsSelect) {
+        if (retrievedNames[i].specialistNo == specialistSelect) {
             return retrievedNames[i].startTime;
         }
     }
 }
+
+function addToTimeStorage(totalSeconds) {
+    var displayTime = localStorage.getItem("timeStorage");
+    var retrievedTime = JSON.parse(displayTime);
+    var specialistSelect = document.getElementById('specSelect').value;
+    var totalTime = { "specialist": Number(specialistSelect), "totalTime": Number(totalSeconds) }
+    retrievedTime.push(totalTime);
+    localStorage.setItem("timeStorage", JSON.stringify(retrievedTime));
+}
+
 
 function deleteFirst() {
     var displayNames = localStorage.getItem("customer");
@@ -159,8 +161,7 @@ function deleteFirst() {
     var time = getCurrentTime();
     var removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(smallestClNumber);
     var initialTime = findInitialTime();
-    retrievedNames.splice(removeClient, 1);
-    localStorage.setItem("customer", JSON.stringify(retrievedNames));
+    // retrievedNames.splice(removeClient, 1);
     filterCustomers()
     initialTime = new Date(initialTime);
     var nowTimeStamp = new Date();
@@ -169,5 +170,18 @@ function deleteFirst() {
     var microSecondsDiff = Math.abs(deleteTimeStamp - startTime);
     var timeDiff = Math.floor(microSecondsDiff / 1000);
     console.log(timeDiff);
+    setTotalTimeStorage();
+    addToTimeStorage(timeDiff);
+    localStorage.setItem("customer", JSON.stringify(retrievedNames));
 };
+
+var timeSpent = [];
+
+
+function setTotalTimeStorage() {
+    if (window.localStorage.length == false) {
+    localStorage.setItem("timeStorage", JSON.stringify(timeSpent));
+    }
+}
+
 
