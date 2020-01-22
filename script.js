@@ -163,7 +163,7 @@ function deleteFirst() {
     var time = getCurrentTime();
     var removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(smallestClNumber);
     var initialTime = findInitialTime();
-    // retrievedNames.splice(removeClient, 1);
+    retrievedNames.splice(removeClient, 1);
     filterCustomers()
     initialTime = new Date(initialTime);
     var nowTimeStamp = new Date();
@@ -172,10 +172,41 @@ function deleteFirst() {
     var microSecondsDiff = Math.abs(deleteTimeStamp - startTime);
     var timeDiff = Math.floor(microSecondsDiff / 1000);
     console.log(timeDiff);
-
     addToTimeStorage(timeDiff);
     localStorage.setItem("customer", JSON.stringify(retrievedNames));
 };
+
+function filterSpecialistTime() {
+    var displayTime = localStorage.getItem("timeStorage");
+    var retrievedTime = JSON.parse(displayTime);
+    var timeSum = 0;
+        for (var i = 0; i < retrievedTime.length; i++) {
+            if (retrievedTime[i].specialist == 1) {
+                console.log('spec 1: ' + retrievedTime[i].totalTime);
+                timeSum += parseInt(retrievedTime[i].totalTime);
+            }
+        }
+        console.log('total spec1 sum: ' + timeSum);
+}
+
+filterSpecialistTime()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
