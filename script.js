@@ -4,6 +4,7 @@ var selectedSpecialist = '';
 var selectClientForDelete = '';
 var names = '';
 var test = '';
+var timeSpent = [];
 var clients = [{
     specialistNo: 1,
     name: 'Donny Joe',
@@ -57,6 +58,7 @@ function loadData() {
     if (window.localStorage.length == false) {
         setInitialTime();
         localStorage.setItem("customer", JSON.stringify(clients));
+        localStorage.setItem("timeStorage", JSON.stringify(timeSpent));
     }
 }
 
@@ -170,18 +172,10 @@ function deleteFirst() {
     var microSecondsDiff = Math.abs(deleteTimeStamp - startTime);
     var timeDiff = Math.floor(microSecondsDiff / 1000);
     console.log(timeDiff);
-    setTotalTimeStorage();
+
     addToTimeStorage(timeDiff);
     localStorage.setItem("customer", JSON.stringify(retrievedNames));
 };
 
-var timeSpent = [];
-
-
-function setTotalTimeStorage() {
-    if (window.localStorage.length == false) {
-    localStorage.setItem("timeStorage", JSON.stringify(timeSpent));
-    }
-}
 
 
