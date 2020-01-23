@@ -164,7 +164,6 @@ function deleteFirst() {
     var removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(smallestClNumber);
     var initialTime = findInitialTime();
     retrievedNames.splice(removeClient, 1);
-    filterCustomers()
     initialTime = new Date(initialTime);
     var nowTimeStamp = new Date();
     var startTime = (new Date(initialTime)).getTime();
@@ -174,6 +173,7 @@ function deleteFirst() {
     console.log(timeDiff);
     addToTimeStorage(timeDiff);
     localStorage.setItem("customer", JSON.stringify(retrievedNames));
+    filterCustomers()
 };
 
 function filterSpecialistTime() {
