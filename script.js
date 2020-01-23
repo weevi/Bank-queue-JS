@@ -179,33 +179,22 @@ function deleteFirst() {
 function filterSpecialistTime() {
     var displayTime = localStorage.getItem("timeStorage");
     var retrievedTime = JSON.parse(displayTime);
-    var timeSum = 0;
-    for (var i = 0; i < retrievedTime.length; i++) {
-        if (retrievedTime[i].specialist == 1) {
-            console.log('spec 1: ' + retrievedTime[i].totalTime);
-            timeSum += parseInt(retrievedTime[i].totalTime);
-            var specTimeCount =
-                console.log('specTimeLength: ' + specTimeCount);
+    for (var j = 1; j <= 4; j++) {
+        var timeSum = 0;
+        for (var i = 0; i < retrievedTime.length; i++) {
+            if (retrievedTime[i].specialist == j) {
+                console.log('spec ' + j + ': ' + retrievedTime[i].totalTime);
+                timeSum += parseInt(retrievedTime[i].totalTime);
+            }
         }
+        console.log('total spec sum: ' + timeSum);
+        var id = j;
+        var count = retrievedTime.filter((obj) => obj.specialist == id).length;
+        console.log('count: ' + count);
+        var average = timeSum / count;
+        console.log('average: ' + average)
     }
-    console.log('total spec1 sum: ' + timeSum);
-    var id = 1;
-    var count = retrievedTime.filter((obj) => obj.specialist == id).length;
-    console.log('count: '+count);
-    var average = timeSum / count;
-    console.log('average'+average)
+
 }
 
 filterSpecialistTime()
-
-
-
-
-
-
-
-
-
-
-
-
