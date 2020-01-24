@@ -5,6 +5,7 @@ var selectClientForDelete = '';
 var names = '';
 var test = '';
 var timeSpent = [];
+var average;
 var clients = [{
     specialistNo: 1,
     name: 'Donny Joe',
@@ -97,20 +98,6 @@ function setSpecialist() {
     selectedSpecialist = document.getElementById('selectedSpecialist').value;
 }
 
-function showClientsOnBoard() {
-    var displayNames = localStorage.getItem("customer");
-    var retrievedNames = JSON.parse(displayNames);
-    for (var j = 1; j <= 4; j++) {
-        for (var i = 0; i < retrievedNames.length; i++) {
-            if (retrievedNames[i].specialistNo == j) {
-                customers += '<li class="list-item">' + retrievedNames[i].name + '</li>';
-            }
-            document.getElementById(j).innerHTML = customers;
-        }
-        customers = "";//???????????
-    }
-}
-
 function filterCustomers() {
     var displayNames = localStorage.getItem("customer");
     var retrievedNames = JSON.parse(displayNames);
@@ -176,25 +163,55 @@ function deleteFirst() {
     filterCustomers()
 };
 
+// function convertToMinutes(seconds) {
+//     return Math.floor(seconds / 60) + ":" + (seconds % 60 ? seconds % 60 : '00');
+// }
+
+
+function showClientsOnBoard() {
+    var displayNames = localStorage.getItem("customer");
+    var retrievedNames = JSON.parse(displayNames);
+    for (var j = 1; j <= 4; j++) {
+        for (var i = 0; i < retrievedNames.length; i++) {
+            if (retrievedNames[i].specialistNo == j) {
+               
+                customers += '<li class="list-item">' + retrievedNames[i].name + average + '</li>';
+            }
+            document.getElementById(j).innerHTML = customers;
+        }
+    
+        customers = "";
+    }
+}
+
 function filterSpecialistTime() {
     var displayTime = localStorage.getItem("timeStorage");
+    var displayNames = localStorage.getItem("customer");
     var retrievedTime = JSON.parse(displayTime);
+    var retrievedNames = JSON.parse(displayNames);
     for (var j = 1; j <= 4; j++) {
         var timeSum = 0;
         for (var i = 0; i < retrievedTime.length; i++) {
             if (retrievedTime[i].specialist == j) {
-                console.log('spec ' + j + ': ' + retrievedTime[i].totalTime);
+                // console.log('spec ' + j + ': ' + retrievedTime[i].totalTime);
                 timeSum += parseInt(retrievedTime[i].totalTime);
             }
         }
-        console.log('total spec sum: ' + timeSum);
         var id = j;
         var count = retrievedTime.filter((obj) => obj.specialist == id).length;
-        console.log('count: ' + count);
-        var average = timeSum / count;
-        console.log('average: ' + average)
+        average = timeSum / count;
+        console.log('average: ' + average);  
+        for (var i = 0; i < retrievedNames.length; i++) {
+            if (retrievedNames[i].specialistNo == j) {
+               
+                customers += '<li class="list-item">' + retrievedNames[i].name + average + '</li>';
+            }
+            document.getElementById(j).innerHTML = customers;
+        }
+    
+        customers = "";      
     }
-
 }
 
 filterSpecialistTime()
+
