@@ -179,22 +179,28 @@ function filterSpecialistTime() {
         var id = j;
         var count = retrievedTime.filter((obj) => obj.specialist == id).length;
         average = timeSum / count;
-        
+
         var clientCount = 0;
-        for (var i = 0; i < retrievedNames.length; i++) {            
-                if (retrievedNames[i].specialistNo == j) {    
-                    clientCount++;
-                    var NewAverage = average * (clientCount);
-                    customers += '<li class="list-item">' + retrievedNames[i].name + ' ' + NewAverage + '</li>';
-                }
-                document.getElementById(j).innerHTML = customers;
+        for (var i = 0; i < retrievedNames.length; i++) {
+            if (retrievedNames[i].specialistNo == j) {
+                clientCount++;
+                var newAverage = average * (clientCount);
+                newAverage = secondsToMinutes(newAverage)
+                customers += '<li class="list-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
+            }
+            document.getElementById(j).innerHTML = customers;
         }
         customers = "";
     }
 }
+
 filterSpecialistTime();
 
-// function convertToMinutes(seconds) {
-//     return Math.floor(seconds / 60) + ":" + (seconds % 60 ? seconds % 60 : '00');
-// }
+
+function secondsToMinutes(seconds) {
+    var minutes = "0" + Math.floor(seconds / 60);
+    var seconds = "0" + (seconds - minutes * 60);
+    return minutes.substr(-2) + ":" + seconds.substr(-2);
+}
+
 
