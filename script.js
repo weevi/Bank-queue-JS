@@ -146,9 +146,8 @@ function addToTimeStorage(totalSeconds) {
 function deleteFirst() {
     var displayNames = localStorage.getItem("customer");
     var retrievedNames = JSON.parse(displayNames);
-    var smallestClNumber = findSmallest();
     var time = getCurrentTime();
-    var removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(smallestClNumber);
+    var removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(findSmallest());
     var initialTime = findInitialTime();
     retrievedNames.splice(removeClient, 1);
     initialTime = new Date(initialTime);
@@ -163,22 +162,6 @@ function deleteFirst() {
     filterCustomers()
 };
 
-// function showClientsOnBoard() {
-//     var displayNames = localStorage.getItem("customer");
-//     var retrievedNames = JSON.parse(displayNames);
-//     for (var j = 1; j <= 4; j++) {
-//         for (var i = 0; i < retrievedNames.length; i++) {
-//             if (retrievedNames[i].specialistNo == j) {
-
-//                 customers += '<li class="list-item">' + retrievedNames[i].name + ' ' + average + '</li>';
-//             }
-//             document.getElementById(j).innerHTML = customers;
-//         }
-
-//         customers = "";
-//     }
-// }
-
 function filterSpecialistTime() {
     var displayTime = localStorage.getItem("timeStorage");
     var displayNames = localStorage.getItem("customer");
@@ -186,6 +169,7 @@ function filterSpecialistTime() {
     var retrievedNames = JSON.parse(displayNames);
     for (var j = 1; j <= 4; j++) {
         var timeSum = 0;
+
         for (var i = 0; i < retrievedTime.length; i++) {
             if (retrievedTime[i].specialist == j) {
                 timeSum += parseInt(retrievedTime[i].totalTime);
@@ -195,25 +179,20 @@ function filterSpecialistTime() {
         var id = j;
         var count = retrievedTime.filter((obj) => obj.specialist == id).length;
         average = timeSum / count;
-        console.log('average: ' + average);
-
-        for (var i = 0; i < retrievedNames.length; i++) {
-            if (retrievedNames[i].specialistNo == j) {
-                customers += '<li class="list-item">' + retrievedNames[i].name + ' '+ average + '</li>';
-            }
-            document.getElementById(j).innerHTML = customers;
+        
+        var clientCount = 0;
+        for (var i = 0; i < retrievedNames.length; i++) {            
+                if (retrievedNames[i].specialistNo == j) {    
+                    clientCount++;
+                    var NewAverage = average * (clientCount);
+                    customers += '<li class="list-item">' + retrievedNames[i].name + ' ' + NewAverage + '</li>';
+                }
+                document.getElementById(j).innerHTML = customers;
         }
         customers = "";
     }
 }
 filterSpecialistTime();
-
-// if (retrievedNames[i].specialistNo == j) {
-//     if (ul.hasChildNodes()) {
-//         var children = ul.childNodes;
-//         for (var i = 0; i < children.length; i++) {
-//             average = children[i] * average
-//         }
 
 // function convertToMinutes(seconds) {
 //     return Math.floor(seconds / 60) + ":" + (seconds % 60 ? seconds % 60 : '00');
