@@ -24,9 +24,12 @@ ul > li:first-child {
 }
 
 .spec-wrap {
+    display: flex;
+    flex-wrap: wrap;
     border: 1px solid rgba(255, 255, 255, 0.315);
     padding: 40px 40px 80px 40px;
     margin: 20px;
+    justify-content: center;
 }
 
 ul {
