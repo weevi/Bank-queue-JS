@@ -211,5 +211,3 @@ function getClientInfo() {
         document.getElementById('nameSurname').innerHTML = clientName;
     }
 }
-
-
