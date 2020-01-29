@@ -1,1 +1,1 @@
-// showClientsOnBoard() 
+filterSpecialistTime()

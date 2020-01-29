@@ -194,13 +194,22 @@ function filterSpecialistTime() {
     }
 }
 
-filterSpecialistTime();
-
-
 function secondsToMinutes(seconds) {
     var minutes = "0" + Math.floor(seconds / 60);
     var seconds = "0" + (seconds - minutes * 60);
     return minutes.substr(-2) + ":" + seconds.substr(-2);
+}
+
+function getClientInfo() {
+    var displayNames = localStorage.getItem("customer");
+    var retrievedNames = JSON.parse(displayNames);
+    var customerInput = document.getElementById('customerNumber').value;
+    for (var i = 0; i < retrievedNames.length; i++) {
+        if(retrievedNames[i].clientNo == customerInput){
+        var clientName = retrievedNames[i].name;
+        }
+        document.getElementById('nameSurname').innerHTML = clientName;
+    }
 }
 
 
