@@ -202,10 +202,9 @@ filterSpecialistTime();
 
 function getClientInfo() {
     window.customerInput = document.getElementById('customerNumber').value;
-    console.log(namesAndTimes);
     for (var i = 0; i < namesAndTimes.length; i++) {
             if (namesAndTimes[i].number == customerInput) {
-                var specificTime = namesAndTimes[i].time;
+                var specificTime = 'Hello, '+ namesAndTimes[i].name + '. your waiting time is: '+namesAndTimes[i].time;
             }
         }
         document.getElementById('nameSurname').innerHTML = specificTime;
