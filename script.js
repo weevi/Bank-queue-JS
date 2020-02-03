@@ -6,6 +6,8 @@ var names = '';
 var test = '';
 var timeSpent = [];
 var average;
+var specificAverage = '';
+var clientName = '';
 var clients = [{
     specialistNo: 1,
     name: 'Donny Joe',
@@ -161,7 +163,7 @@ function deleteFirst() {
     localStorage.setItem("customer", JSON.stringify(retrievedNames));
     filterCustomers()
 };
-
+var namesAndTimes = [];
 function filterSpecialistTime() {
     var displayTime = localStorage.getItem("timeStorage");
     var displayNames = localStorage.getItem("customer");
@@ -185,29 +187,33 @@ function filterSpecialistTime() {
             if (retrievedNames[i].specialistNo == j) {
                 clientCount++;
                 var newAverage = average * (clientCount);
-                newAverage = secondsToMinutes(newAverage)
+                newAverage = secondsToMinutes(newAverage);
                 customers += '<li class="list-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
+                namesAndTimes.push({name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo});
             }
-            document.getElementById(j).innerHTML = customers;
+            // document.getElementById(j).innerHTML = customers;
+
         }
         customers = "";
     }
 }
+filterSpecialistTime();
+
+
+function getClientInfo() {
+    window.customerInput = document.getElementById('customerNumber').value;
+    console.log(namesAndTimes);
+    for (var i = 0; i < namesAndTimes.length; i++) {
+            if (namesAndTimes[i].number == customerInput) {
+                var specificTime = namesAndTimes[i].time;
+            }
+        }
+        document.getElementById('nameSurname').innerHTML = specificTime;
+    }
+
 
 function secondsToMinutes(seconds) {
     var minutes = "0" + Math.floor(seconds / 60);
     var seconds = "0" + (seconds - minutes * 60);
     return minutes.substr(-2) + ":" + seconds.substr(-2);
-}
-
-function getClientInfo() {
-    var displayNames = localStorage.getItem("customer");
-    var retrievedNames = JSON.parse(displayNames);
-    var customerInput = document.getElementById('customerNumber').value;
-    for (var i = 0; i < retrievedNames.length; i++) {
-        if(retrievedNames[i].clientNo == customerInput){
-        var clientName = retrievedNames[i].name;
-        }
-        document.getElementById('nameSurname').innerHTML = clientName;
-    }
 }
