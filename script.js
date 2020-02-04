@@ -94,6 +94,7 @@ function saveInputValue() {
     var newCustomer = { "specialistNo": Number(selectedSpecialist), "name": inputValue, "clientNo": newClientNo, "startTime": time };
     displayNames.push(newCustomer);
     localStorage.setItem("customer", JSON.stringify(displayNames));
+    alert('Uzregistruota sekmingai!');
 };
 
 function setSpecialist() {
@@ -191,7 +192,7 @@ function filterSpecialistTime() {
                 customers += '<li class="list-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
                 namesAndTimes.push({name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo});
             }
-            // document.getElementById(j).innerHTML = customers;
+            //  document.getElementById(j).innerHTML = customers;
 
         }
         customers = "";
@@ -204,7 +205,7 @@ function getClientInfo() {
     window.customerInput = document.getElementById('customerNumber').value;
     for (var i = 0; i < namesAndTimes.length; i++) {
             if (namesAndTimes[i].number == customerInput) {
-                var specificTime = 'Hello, '+ namesAndTimes[i].name + '. your waiting time is: '+namesAndTimes[i].time;
+                var specificTime = 'Hello, '+ namesAndTimes[i].name + '. Your waiting time is: '+namesAndTimes[i].time;
             }
         }
         document.getElementById('nameSurname').innerHTML = specificTime;
