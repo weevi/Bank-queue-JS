@@ -107,7 +107,7 @@ function filterCustomers() {
     var specialistsSelect = document.getElementById('specSelect').value;
     for (var i = 0; i < retrievedNames.length; i++) {
         if (retrievedNames[i].specialistNo == specialistsSelect) {
-            customers += '<li class="list-item">' + retrievedNames[i].name + ' ' + retrievedNames[i].clientNo + '</li>';
+            customers += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + retrievedNames[i].clientNo + '</li>';
         }
         document.getElementById("clientsList").innerHTML = customers;
     }
@@ -159,7 +159,6 @@ function deleteFirst() {
     var deleteTimeStamp = nowTimeStamp.getTime();
     var microSecondsDiff = Math.abs(deleteTimeStamp - startTime);
     var timeDiff = Math.floor(microSecondsDiff / 1000);
-    console.log(timeDiff);
     addToTimeStorage(timeDiff);
     localStorage.setItem("customer", JSON.stringify(retrievedNames));
     filterCustomers()
@@ -171,6 +170,11 @@ function filterSpecialistTime() {
     var retrievedTime = JSON.parse(displayTime);
     var retrievedNames = JSON.parse(displayNames);
     for (var j = 1; j <= 4; j++) {
+        if (window.localStorage.length == false) {
+            noDataMessage = '<h2>Nepavyko nuskaityti lankytojų duomenų.</h2>';
+            document.getElementById("noDataMessage").innerHTML = noDataMessage;
+        }
+     
         var timeSum = 0;
 
         for (var i = 0; i < retrievedTime.length; i++) {
@@ -189,10 +193,10 @@ function filterSpecialistTime() {
                 clientCount++;
                 var newAverage = average * (clientCount);
                 newAverage = secondsToMinutes(newAverage);
-                customers += '<li class="list-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
+                customers += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
                 namesAndTimes.push({name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo});
             }
-            //  document.getElementById(j).innerHTML = customers;
+            document.getElementById(j).innerHTML = customers;
 
         }
         customers = "";

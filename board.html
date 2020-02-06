@@ -1,21 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div class="wrap">
-   <div class="spec-wrap"><h3>Specialist 1</h3><ul class="spec-list" id="1"></ul></div>
-   <div class="spec-wrap"><h3>Specialist 2</h3><ul class="spec-list" id="2"></ul></div>
-   <div class="spec-wrap"><h3>Specialist 3</h3><ul class="spec-list" id="3"></ul></div>
-   <div class="spec-wrap"><h3>Specialist 4</h3><ul class="spec-list" id="4"></ul></div>
-  </div>
-    <script src="script.js"></script>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+            <div class="row">
+                <div id="noDataMessage" class="msg-wrap"></div>
+                    <div class="col-lg-3">
+                            <div class="title-wrap board">
+                        <h3>Specialist 1</h3>
+                            </div>
+                        <ul class="list-group list-group-flush">
+                          <div id="1"></div>
+                       </ul>
+                    </div>
+                    <div class="col-lg-3">
+                            <div class="title-wrap board">
+                                    <h3>Specialist 2</h3>
+                                        </div>
+                        <ul class="list-group list-group-flush">
+                          <div id="2"></div>
+                       </ul>
+                    </div>
+                    <div class="col-lg-3">
+                            <div class="title-wrap board">
+                                    <h3>Specialist 3</h3>
+                                        </div>
+                        <ul class="list-group list-group-flush">
+                          <div id="3"></div>
+                       </ul>
+                    </div>
+                    <div class="col-lg-3">
+                            <div class="title-wrap board">
+                                    <h3>Specialist 4</h3>
+                                        </div>
+                        <ul class="list-group list-group-flush">
+                          <div id="4"></div>
+                       </ul>
+                    </div>
+
+        </div>
+    </div>
+   <script src="script.js"></script>
     <script src="board.js"></script>
-  </body>
+</body>
 </html>
