@@ -172,9 +172,9 @@ function filterSpecialistTime() {
     for (var j = 1; j <= 4; j++) {
         if (window.localStorage.length == false) {
             noDataMessage = '<h2>Nepavyko nuskaityti lankytojų duomenų.</h2>';
-            document.getElementById("noDataMessage").innerHTML = noDataMessage;
+            document.getElementById(j).innerHTML = noDataMessage;
         }
-     
+
         var timeSum = 0;
 
         for (var i = 0; i < retrievedTime.length; i++) {
@@ -192,12 +192,16 @@ function filterSpecialistTime() {
             if (retrievedNames[i].specialistNo == j) {
                 clientCount++;
                 var newAverage = average * (clientCount);
-                newAverage = secondsToMinutes(newAverage);
-                customers += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
-                namesAndTimes.push({name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo});
+                if (newAverage != newAverage) {
+                    customers += '<li class="list-group-item">' + retrievedNames[i].name + '</li>';
+                    namesAndTimes.push({ name: retrievedNames[i].name });
+                } else {
+                    newAverage = secondsToMinutes(newAverage);
+                    customers += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
+                    namesAndTimes.push({ name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo });
+                }
+                document.getElementById(j).innerHTML = customers;
             }
-            document.getElementById(j).innerHTML = customers;
-
         }
         customers = "";
     }
@@ -208,12 +212,12 @@ filterSpecialistTime();
 function getClientInfo() {
     window.customerInput = document.getElementById('customerNumber').value;
     for (var i = 0; i < namesAndTimes.length; i++) {
-            if (namesAndTimes[i].number == customerInput) {
-                var specificTime = 'Hello, '+ namesAndTimes[i].name + '. Your waiting time is: '+namesAndTimes[i].time;
-            }
+        if (namesAndTimes[i].number == customerInput) {
+            var specificTime = 'Hello, ' + namesAndTimes[i].name + '. Your waiting time is: ' + namesAndTimes[i].time;
         }
-        document.getElementById('nameSurname').innerHTML = specificTime;
     }
+    document.getElementById('nameSurname').innerHTML = specificTime;
+}
 
 
 function secondsToMinutes(seconds) {
