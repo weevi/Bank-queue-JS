@@ -163,6 +163,7 @@ function deleteFirst() {
     localStorage.setItem("customer", JSON.stringify(retrievedNames));
     filterCustomers()
 };
+
 var namesAndTimes = [];
 function filterSpecialistTime() {
     var displayTime = localStorage.getItem("timeStorage");
@@ -193,17 +194,17 @@ function filterSpecialistTime() {
                 clientCount++;
                 var newAverage = average * (clientCount);
                 if (newAverage != newAverage) {
-                    customers += '<li class="list-group-item">' + retrievedNames[i].name + '</li>';
+                    customer += '<li class="list-group-item">' + retrievedNames[i].name + '</li>';
                     namesAndTimes.push({ name: retrievedNames[i].name });
                 } else {
                     newAverage = secondsToMinutes(newAverage);
-                    customers += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
+                    customer += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
                     namesAndTimes.push({ name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo });
                 }
-                document.getElementById(j).innerHTML = customers;
+                document.getElementById(j).innerHTML = customer;
             }
         }
-        customers = "";
+        customer = "";
     }
 }
 filterSpecialistTime();
