@@ -202,13 +202,12 @@ function filterSpecialistTime() {
                     customer += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
                     namesAndTimes.push({ name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo });
                 }
-                // document.getElementById(j).innerHTML = customer;
+                  document.getElementById(j).innerHTML = customer;
             }
         }
         customer = "";
     }
 }
-filterSpecialistTime();
 
 
 function getClientInfo() {
