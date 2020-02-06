@@ -1,5 +1,6 @@
 var inputValue = '';
 var customers = '';
+var customer ='';
 var selectedSpecialist = '';
 var selectClientForDelete = '';
 var names = '';
@@ -201,7 +202,7 @@ function filterSpecialistTime() {
                     customer += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
                     namesAndTimes.push({ name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo });
                 }
-                document.getElementById(j).innerHTML = customer;
+                // document.getElementById(j).innerHTML = customer;
             }
         }
         customer = "";
@@ -213,11 +214,14 @@ filterSpecialistTime();
 function getClientInfo() {
     window.customerInput = document.getElementById('customerNumber').value;
     for (var i = 0; i < namesAndTimes.length; i++) {
-        if (namesAndTimes[i].number == customerInput) {
-            var specificTime = 'Hello, ' + namesAndTimes[i].name + '. Your waiting time is: ' + namesAndTimes[i].time;
+       if (namesAndTimes[i].number == customerInput) {
+            var specificTime = 'Sveiki, ' + namesAndTimes[i].name + '. Jums liko laukti: ' + namesAndTimes[i].time;
+            document.getElementById('nameSurname').innerHTML = specificTime;
+        } else if (namesAndTimes[i].number != customerInput) {
+            var wrongNumber = 'Prašome patikslinti numerį.';
+            document.getElementById('nameSurname').innerHTML = wrongNumber;
         }
     }
-    document.getElementById('nameSurname').innerHTML = specificTime;
 }
 
 
