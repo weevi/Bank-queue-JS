@@ -1,6 +1,6 @@
 var inputValue = '';
 var customers = '';
-var customer ='';
+var customer = '';
 var selectedSpecialist = '';
 var selectClientForDelete = '';
 var names = '';
@@ -174,68 +174,20 @@ function deleteFirst() {
     filterCustomers()
 };
 
-var namesAndTimes = [];
-function filterSpecialistTime() {
-    var displayTime = localStorage.getItem("timeStorage");
-    var displayNames = localStorage.getItem("customer");
-    var retrievedTime = JSON.parse(displayTime);
-    var retrievedNames = JSON.parse(displayNames);
-    for (var j = 1; j <= 4; j++) {
-        if (window.localStorage.length == false) {
-            noDataMessage = '<h2>Nepavyko nuskaityti lankytojų duomenų.</h2>';
-            document.getElementById(j).innerHTML = noDataMessage;
-        }
-
-        var timeSum = 0;
-
-        for (var i = 0; i < retrievedTime.length; i++) {
-            if (retrievedTime[i].specialist == j) {
-                timeSum += parseInt(retrievedTime[i].totalTime);
-            }
-        }
-
-        var id = j;
-        var count = retrievedTime.filter((obj) => obj.specialist == id).length;
-        average = timeSum / count;
-
-        var clientCount = 0;
-        for (var i = 0; i < retrievedNames.length; i++) {
-            if (retrievedNames[i].specialistNo == j) {
-                clientCount++;
-                var newAverage = average * (clientCount);
-                if (newAverage != newAverage) {
-                    customer += '<li class="list-group-item">' + retrievedNames[i].name + '</li>';
-                    namesAndTimes.push({ name: retrievedNames[i].name });
-                } else {
-                    newAverage = secondsToMinutes(newAverage);
-                    customer += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
-                    // namesAndTimes.push({ name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo });
-                    addToAverageTimeStorage(retrievedNames[i].name, newAverage, retrievedNames[i].clientNo);
-                }
-                 document.getElementById(j).innerHTML = customer;
-            }
-           
-        }
-        customer = "";
-    }
-}
-
-filterSpecialistTime()
-
-
 function getClientInfo() {
+    var displayAverageTimes = localStorage.getItem("AverageTimeStorage");
+    var retrievedAverageTimes = JSON.parse(displayAverageTimes);
     window.customerInput = document.getElementById('customerNumber').value;
-    for (var i = 0; i < namesAndTimes.length; i++) {
-       if (namesAndTimes[i].number == customerInput) {
-            var specificTime = 'Sveiki, ' + namesAndTimes[i].name + '. Jums liko laukti: ' + namesAndTimes[i].time;
-           return document.getElementById('clientsInfo').innerHTML = specificTime;
-        } else if (namesAndTimes[i].number != customerInput) {
+    for (var i = 0; i < retrievedAverageTimes.length; i++) {
+        if (retrievedAverageTimes[i].number == customerInput) {
+            var specificTime = 'Sveiki, ' + retrievedAverageTimes[i].name + '. Jums liko laukti: ' + retrievedAverageTimes[i].average;
+            return document.getElementById('clientsInfo').innerHTML = specificTime;
+        } else if (retrievedAverageTimes[i].number != customerInput) {
             var wrongNumber = 'Prašome patikslinti numerį.';
             document.getElementById('clientsInfo').innerHTML = wrongNumber;
-        }       
+        }
     }
 }
-
 
 function secondsToMinutes(seconds) {
     var minutes = "0" + Math.floor(seconds / 60);
