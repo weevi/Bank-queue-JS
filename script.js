@@ -6,6 +6,7 @@ var selectClientForDelete = '';
 var names = '';
 var test = '';
 var timeSpent = [];
+var averageTimeSpent = [];
 var average;
 var specificAverage = '';
 var clientName = '';
@@ -63,6 +64,7 @@ function loadData() {
         setInitialTime();
         localStorage.setItem("customer", JSON.stringify(clients));
         localStorage.setItem("timeStorage", JSON.stringify(timeSpent));
+        localStorage.setItem("AverageTimeStorage", JSON.stringify(averageTimeSpent));
     }
 }
 
@@ -146,6 +148,13 @@ function addToTimeStorage(totalSeconds) {
     localStorage.setItem("timeStorage", JSON.stringify(retrievedTime));
 }
 
+function addToAverageTimeStorage(name, allAverages, number) {
+    var displayAverageTime = localStorage.getItem("AverageTimeStorage");
+    var retrievedAverageTime = JSON.parse(displayAverageTime);
+    var allAverageTimes = { "name": name, "average": allAverages, "number": Number(number) }
+    retrievedAverageTime.push(allAverageTimes);
+    localStorage.setItem("AverageTimeStorage", JSON.stringify(retrievedAverageTime));
+}
 
 function deleteFirst() {
     var displayNames = localStorage.getItem("customer");
@@ -200,14 +209,18 @@ function filterSpecialistTime() {
                 } else {
                     newAverage = secondsToMinutes(newAverage);
                     customer += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
-                    namesAndTimes.push({ name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo });
+                    // namesAndTimes.push({ name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo });
+                    addToAverageTimeStorage(retrievedNames[i].name, newAverage, retrievedNames[i].clientNo);
                 }
-                //  document.getElementById(j).innerHTML = customer;
+                 document.getElementById(j).innerHTML = customer;
             }
+           
         }
         customer = "";
     }
 }
+
+filterSpecialistTime()
 
 
 function getClientInfo() {
@@ -215,7 +228,7 @@ function getClientInfo() {
     for (var i = 0; i < namesAndTimes.length; i++) {
        if (namesAndTimes[i].number == customerInput) {
             var specificTime = 'Sveiki, ' + namesAndTimes[i].name + '. Jums liko laukti: ' + namesAndTimes[i].time;
-           return document.getElementById('nameSurname').innerHTML = specificTime;
+           return document.getElementById('clientsInfo').innerHTML = specificTime;
         } else if (namesAndTimes[i].number != customerInput) {
             var wrongNumber = 'Prašome patikslinti numerį.';
             document.getElementById('clientsInfo').innerHTML = wrongNumber;
