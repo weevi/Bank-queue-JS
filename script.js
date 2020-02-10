@@ -147,14 +147,15 @@ function addToTimeStorage(totalSeconds) {
     retrievedTime.push(totalTime);
     localStorage.setItem("timeStorage", JSON.stringify(retrievedTime));
 }
-
+var retrievedAverageTime = [];
 function addToAverageTimeStorage(name, allAverages, number) {
-    var displayAverageTime = localStorage.getItem("AverageTimeStorage");
-    var retrievedAverageTime = JSON.parse(displayAverageTime);
+    // var displayAverageTime = localStorage.getItem("AverageTimeStorage");
+    // var retrievedAverageTime = JSON.parse(displayAverageTime);
     var allAverageTimes = { "name": name, "average": allAverages, "number": Number(number) }
     retrievedAverageTime.push(allAverageTimes);
     localStorage.setItem("AverageTimeStorage", JSON.stringify(retrievedAverageTime));
 }
+
 
 function deleteFirst() {
     var displayNames = localStorage.getItem("customer");

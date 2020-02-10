@@ -18,6 +18,7 @@ function filterSpecialistTime() {
             }
         }
 
+        var idItem = 0;
         var id = j;
         var count = retrievedTime.filter((obj) => obj.specialist == id).length;
         average = timeSum / count;
@@ -33,7 +34,6 @@ function filterSpecialistTime() {
                 } else {
                     newAverage = secondsToMinutes(newAverage);
                     customer += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
-                    // namesAndTimes.push({ name: retrievedNames[i].name, time: newAverage, number: retrievedNames[i].clientNo });
                     addToAverageTimeStorage(retrievedNames[i].name, newAverage, retrievedNames[i].clientNo);
                 }
                  document.getElementById(j).innerHTML = customer;
