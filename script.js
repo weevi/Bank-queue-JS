@@ -181,11 +181,26 @@ function getClientInfo() {
     window.customerInput = document.getElementById('customerNumber').value;
     for (var i = 0; i < retrievedAverageTimes.length; i++) {
         if (retrievedAverageTimes[i].number == customerInput) {
-            var specificTime = 'Sveiki, ' + retrievedAverageTimes[i].name + '. Jums liko laukti: ' + retrievedAverageTimes[i].average;
-            return document.getElementById('clientsInfo').innerHTML = specificTime;
+
+            var customerName = retrievedAverageTimes[i].name;
+            var initialSecs = retrievedAverageTimes[i].average;
+            var currentSecs = initialSecs;
+
+            setTimeout(decrement, 1000);
+
+            function decrement() {
+                var displayedSecs = currentSecs % 60;
+                var displayedMin = Math.floor(currentSecs / 60) % 60;
+
+                if (displayedMin <= 9) displayedMin = "0" + displayedMin;
+                if (displayedSecs <= 9) displayedSecs = "0" + displayedSecs;
+                currentSecs--;
+                document.getElementById("timerText").innerHTML = 'Sveiki, ' + customerName + '. Jums liko laukti: ' + displayedMin + ":" + displayedSecs;
+                if (currentSecs !== -1) setTimeout(decrement, 1000);
+            }
         } else if (retrievedAverageTimes[i].number != customerInput) {
             var wrongNumber = 'Prašome patikslinti numerį.';
-            document.getElementById('clientsInfo').innerHTML = wrongNumber;
+            document.getElementById('timerText').innerHTML = wrongNumber;
         }
     }
 }
