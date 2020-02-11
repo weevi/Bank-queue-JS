@@ -45,3 +45,7 @@ function filterSpecialistTime() {
 }
 
 filterSpecialistTime()
+// setInterval(function () {
+//     filterSpecialistTime()
+// }, 3000);
+
