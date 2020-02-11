@@ -8,7 +8,11 @@ function filterSpecialistTime() {
         if (window.localStorage.length == false) {
             noDataMessage = '<h2>Nepavyko nuskaityti lankytojų duomenų.</h2>';
             document.getElementById("noDataMessage").innerHTML = noDataMessage;
-        }
+            var divsToHide = document.getElementsByClassName("title-wrap");
+            for (var i = 0; i < divsToHide.length; i++) {
+                divsToHide[i].style.visibility = "hidden";
+            }
+        } else{
 
         var timeSum = 0;
 
@@ -36,12 +40,13 @@ function filterSpecialistTime() {
                     averageToMinutes = secondsToMinutes(newAverage);
                     customer += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + averageToMinutes + '</li>';
                 }
-                 document.getElementById(j).innerHTML = customer;
+                document.getElementById(j).innerHTML = customer;
             }
-           
+
         }
         customer = "";
     }
+}
 }
 
 filterSpecialistTime()
