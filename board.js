@@ -32,9 +32,9 @@ function filterSpecialistTime() {
                     customer += '<li class="list-group-item">' + retrievedNames[i].name + '</li>';
                     namesAndTimes.push({ name: retrievedNames[i].name });
                 } else {
-                    // newAverage = secondsToMinutes(newAverage);
-                    customer += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + newAverage + '</li>';
                     addToAverageTimeStorage(retrievedNames[i].name, newAverage, retrievedNames[i].clientNo);
+                    averageToMinutes = secondsToMinutes(newAverage);
+                    customer += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + averageToMinutes + '</li>';
                 }
                  document.getElementById(j).innerHTML = customer;
             }
