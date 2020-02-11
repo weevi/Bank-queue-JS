@@ -27,16 +27,26 @@ body {
 }
 
 .title-wrap h4 {
-  line-height: 1.5em;
+  line-height: 1.2em;
   font-size: 1.8em;
+}
+
+.customer {
+  padding-bottom: 20px;
+}
+
+.title-wrap p {
+  padding-top: 50px;
+  margin-bottom: 0;
 }
 
 button {
   color: #045c86;
-  border: 1px solid rgba(4, 93, 134, 0.61);
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  border: 1px solid rgba(4, 93, 134, 0.295);
   background-color: rgba(255, 255, 255, 0.486);
-  padding: 10px;
-  margin: 10px;
+  padding: 11px 15px 11px 15px;
 }
 
 button:hover {
@@ -61,10 +71,16 @@ label {
 
 .board {
   text-align: center;
+  margin-top: 0;
 }
 
-.board {
-margin-top: 0;
+.board p {
+  letter-spacing: 0.6px;
+  font-size: 1.1em;;
+}
+
+.timer {
+  padding: 20px;
 }
 
 .col-lg-7 {
