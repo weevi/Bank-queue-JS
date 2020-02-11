@@ -198,9 +198,11 @@ function getClientInfo() {
                 document.getElementById("timerText").innerHTML = 'Sveiki, ' + customerName + '. Jums liko laukti: ' + displayedMin + ":" + displayedSecs;
                 if (currentSecs !== -1) setTimeout(decrement, 1000);
             }
-        } else if (retrievedAverageTimes[i].number != customerInput) {
-            var wrongNumber = 'Prašome patikslinti numerį.';
-            document.getElementById('timerText').innerHTML = wrongNumber;
+        } else if (retrievedAverageTimes[i].number !== customerInput) {
+            setTimeout(function () {
+                var wrongNumber = 'Prašome patikslinti numerį.';
+                document.getElementById('timerText').innerHTML = wrongNumber;
+            }, 2000);
         }
     }
 }
