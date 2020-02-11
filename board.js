@@ -7,7 +7,7 @@ function filterSpecialistTime() {
     for (var j = 1; j <= 4; j++) {
         if (window.localStorage.length == false) {
             noDataMessage = '<h2>Nepavyko nuskaityti lankytojų duomenų.</h2>';
-            document.getElementById(j).innerHTML = noDataMessage;
+            document.getElementById("noDataMessage").innerHTML = noDataMessage;
         }
 
         var timeSum = 0;

@@ -61,6 +61,10 @@ label {
     text-align: center;
 }
 
+.col-md-10 {
+  padding-top: 60px;
+}
+
 /* nav */
 
 body {
