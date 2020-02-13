@@ -2,14 +2,10 @@ var inputValue = '';
 var customers = '';
 var customer = '';
 var selectedSpecialist = '';
-var selectClientForDelete = '';
-var names = '';
-var test = '';
 var timeSpent = [];
 var averageTimeSpent = [];
 var average;
-var specificAverage = '';
-var clientName = '';
+
 var clients = [{
     specialistNo: 1,
     name: 'Donny Joe',
