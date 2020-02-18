@@ -1,3 +1,5 @@
+var displayNames = localStorage.getItem("customer");
+var retrievedNames = JSON.parse(displayNames);
 var inputValue = '';
 var customers = '';
 var customer = '';
@@ -55,7 +57,7 @@ function setInitialTime() {
     }
 }
 
-function loadData() {
+function loadDataToLocalSt() {
     if (window.localStorage.length == false) {
         setInitialTime();
         localStorage.setItem("customer", JSON.stringify(clients));
@@ -65,8 +67,6 @@ function loadData() {
 }
 
 function generateNewClientNo() {
-    var displayNames = localStorage.getItem("customer");
-    var retrievedNames = JSON.parse(displayNames);
     var largest = 0;
     for (var i = 0; i < retrievedNames.length; i++) {
         if (selectedSpecialist == retrievedNames[i].specialistNo) {
@@ -145,18 +145,12 @@ function addToTimeStorage(totalSeconds) {
 }
 var retrievedAverageTime = [];
 function addToAverageTimeStorage(name, allAverages, number) {
-    // var displayAverageTime = localStorage.getItem("AverageTimeStorage");
-    // var retrievedAverageTime = JSON.parse(displayAverageTime);
     var allAverageTimes = { "name": name, "average": allAverages, "number": Number(number) }
     retrievedAverageTime.push(allAverageTimes);
     localStorage.setItem("AverageTimeStorage", JSON.stringify(retrievedAverageTime));
 }
 
-
 function deleteFirst() {
-    var displayNames = localStorage.getItem("customer");
-    var retrievedNames = JSON.parse(displayNames);
-    var time = getCurrentTime();
     var removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(findSmallest());
     var initialTime = findInitialTime();
     retrievedNames.splice(removeClient, 1);
@@ -171,7 +165,7 @@ function deleteFirst() {
     filterCustomers()
 };
 
-function getClientInfo() {
+function getSpecificClientInfo() {
     var displayAverageTimes = localStorage.getItem("AverageTimeStorage");
     var retrievedAverageTimes = JSON.parse(displayAverageTimes);
     window.customerInput = document.getElementById('customerNumber').value;
@@ -201,10 +195,4 @@ function getClientInfo() {
             }, 2000);
         }
     }
-}
-
-function secondsToMinutes(seconds) {
-    var minutes = "0" + Math.floor(seconds / 60);
-    var seconds = "0" + (seconds - minutes * 60);
-    return minutes.substr(-2) + ":" + seconds.substr(-2);
 }
