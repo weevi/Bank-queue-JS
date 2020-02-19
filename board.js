@@ -22,7 +22,7 @@ filterSpecialistTime = () => {
 
 showNoDataMsg = () => {
     if (window.localStorage.length == false) {
-        noDataMessage = '<h2>Nepavyko nuskaityti lankytojų duomenų.</h2>';
+        noDataMessage = '<h2>Pradžios puslapyje paspauskite "Įkelti duomenis į LocalStorage"</h2>';
         document.getElementById("noDataMessage").innerHTML = noDataMessage;
         let divsToHide = document.getElementsByClassName("title-wrap");
         for (let i = 0; i < divsToHide.length; i++) {
