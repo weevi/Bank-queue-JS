@@ -48,7 +48,7 @@ const clients = [{
 }
 ]
 
-function setInitialTime() {
+setInitialTime = () => {
     for (let i = 0; i < clients.length; i++) {
         let time = getCurrentTime();
         clients[i].startTime = time;
