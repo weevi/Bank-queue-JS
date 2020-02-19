@@ -94,6 +94,7 @@ function saveInputValue() {
     displayNames.push(newCustomer);
     localStorage.setItem("customer", JSON.stringify(displayNames));
     alert('Uzregistruota sekmingai!');
+    window.location.reload()
 };
 
 function setSpecialist() {
