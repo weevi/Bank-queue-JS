@@ -5,15 +5,15 @@ var retrievedNames = JSON.parse(displayNames);
 var namesAndTimes = [];
 
 function filterSpecialistTime() {
-    for (var j = 1; j <= 4; j++) {
+    for (let j = 1; j <= 4; j++) {
         showNoDataMsg()
-        var timeSum = 0;
+        let timeSum = 0;
         for (var i = 0; i < retrievedTime.length; i++) {
             if (retrievedTime[i].specialist == j) {
                 timeSum += parseInt(retrievedTime[i].totalTime);
             }
         }
-        var id = j;
+        let id = j;
         var count = retrievedTime.filter((obj) => obj.specialist == id).length;
         average = Math.floor(timeSum / count);
         var clientCount = 0;
@@ -26,7 +26,7 @@ function showNoDataMsg() {
     if (window.localStorage.length == false) {
         noDataMessage = '<h2>Nepavyko nuskaityti lankytojų duomenų.</h2>';
         document.getElementById("noDataMessage").innerHTML = noDataMessage;
-        var divsToHide = document.getElementsByClassName("title-wrap");
+        let divsToHide = document.getElementsByClassName("title-wrap");
         for (var i = 0; i < divsToHide.length; i++) {
             divsToHide[i].style.visibility = "hidden";
         }

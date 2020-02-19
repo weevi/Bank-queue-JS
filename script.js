@@ -1,5 +1,3 @@
-var displayNames = localStorage.getItem("customer");
-var retrievedNames = JSON.parse(displayNames);
 let inputValue = '';
 let customers = '';
 let customer = '';
@@ -57,7 +55,7 @@ function setInitialTime() {
     }
 }
 
-function loadDataToLocalSt() {
+loadDataToLocalSt = () => {
     if (window.localStorage.length == false) {
         setInitialTime();
         localStorage.setItem("customer", JSON.stringify(clients));
@@ -66,7 +64,9 @@ function loadDataToLocalSt() {
     }
 }
 
-function generateNewClientNo() {
+generateNewClientNo = () => {
+    let displayNames = localStorage.getItem("customer");
+    let retrievedNames = JSON.parse(displayNames);
     let largest = 0;
     for (let i = 0; i < retrievedNames.length; i++) {
         if (selectedSpecialist == retrievedNames[i].specialistNo) {
@@ -77,13 +77,13 @@ function generateNewClientNo() {
     return largest = largest + 1;
 }
 
-function getCurrentTime() {
+getCurrentTime = () => {
     let startTime = new Date()
     return startTime;
 }
 
-function saveInputValue() {
-    var displayNames = JSON.parse(localStorage.getItem("customer"));
+saveInputValue = () => {
+    let displayNames = JSON.parse(localStorage.getItem("customer"));
     let newClientNo = generateNewClientNo();
     let time = getCurrentTime();
     if (displayNames == null) {
@@ -97,15 +97,15 @@ function saveInputValue() {
     window.location.reload()
 };
 
-function setSpecialist() {
+setSpecialist = () => {
     selectedSpecialist = document.getElementById('selectedSpecialist').value;
 }
 
-function filterCustomers() {
-    var displayNames = localStorage.getItem("customer");
-    var retrievedNames = JSON.parse(displayNames);
+filterCustomers = () => {
+    let displayNames = localStorage.getItem("customer");
+    let retrievedNames = JSON.parse(displayNames);
     let specialistsSelect = document.getElementById('specSelect').value;
-    for (var i = 0; i < retrievedNames.length; i++) {
+    for (let i = 0; i < retrievedNames.length; i++) {
         if (retrievedNames[i].specialistNo == specialistsSelect) {
             customers += '<li class="list-group-item">' + retrievedNames[i].name + ' ' + retrievedNames[i].clientNo + '</li>';
         }
@@ -114,74 +114,76 @@ function filterCustomers() {
     customers = "";
 }
 
-function findSmallest() {
-    var displayNames = localStorage.getItem("customer");
-    var retrievedNames = JSON.parse(displayNames);
-    var specialistsSelect = document.getElementById('specSelect').value;
-    for (var i = 0; i < retrievedNames.length; i++) {
+findSmallest = () => {
+    let displayNames = localStorage.getItem("customer");
+    let retrievedNames = JSON.parse(displayNames);
+    let specialistsSelect = document.getElementById('specSelect').value;
+    for (let i = 0; i < retrievedNames.length; i++) {
         if (retrievedNames[i].specialistNo == specialistsSelect) {
             return retrievedNames[i].clientNo;
         }
     }
 }
 
-function findInitialTime() {
-    var displayNames = localStorage.getItem("customer");
-    var retrievedNames = JSON.parse(displayNames);
-    var specialistSelect = document.getElementById('specSelect').value;
-    for (var i = 0; i < retrievedNames.length; i++) {
+findInitialTime = () => {
+    let displayNames = localStorage.getItem("customer");
+    let retrievedNames = JSON.parse(displayNames);
+    let specialistSelect = document.getElementById('specSelect').value;
+    for (let i = 0; i < retrievedNames.length; i++) {
         if (retrievedNames[i].specialistNo == specialistSelect) {
             return retrievedNames[i].startTime;
         }
     }
 }
 
-function addToTimeStorage(totalSeconds) {
-    var displayTime = localStorage.getItem("timeStorage");
-    var retrievedTime = JSON.parse(displayTime);
-    var specialistSelect = document.getElementById('specSelect').value;
-    var totalTime = { "specialist": Number(specialistSelect), "totalTime": Number(totalSeconds) }
+addToTimeStorage = totalSeconds => {
+    let displayTime = localStorage.getItem("timeStorage");
+    let retrievedTime = JSON.parse(displayTime);
+    let specialistSelect = document.getElementById('specSelect').value;
+    let totalTime = { "specialist": Number(specialistSelect), "totalTime": Number(totalSeconds) }
     retrievedTime.push(totalTime);
     localStorage.setItem("timeStorage", JSON.stringify(retrievedTime));
 }
-var retrievedAverageTime = [];
+let retrievedAverageTime = [];
 function addToAverageTimeStorage(name, allAverages, number) {
-    var allAverageTimes = { "name": name, "average": allAverages, "number": Number(number) }
+    let allAverageTimes = { "name": name, "average": allAverages, "number": Number(number) }
     retrievedAverageTime.push(allAverageTimes);
     localStorage.setItem("AverageTimeStorage", JSON.stringify(retrievedAverageTime));
 }
 
-function deleteFirst() {
-    var removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(findSmallest());
-    var initialTime = findInitialTime();
+deleteFirst = () => {
+    let displayNames = localStorage.getItem("customer");
+    let retrievedNames = JSON.parse(displayNames);
+    let removeClient = retrievedNames.map(function (person) { return person.clientNo }).indexOf(findSmallest());
+    let initialTime = findInitialTime();
     retrievedNames.splice(removeClient, 1);
     initialTime = new Date(initialTime);
-    var nowTimeStamp = new Date();
-    var startTime = (new Date(initialTime)).getTime();
-    var deleteTimeStamp = nowTimeStamp.getTime();
-    var microSecondsDiff = Math.abs(deleteTimeStamp - startTime);
-    var timeDiff = Math.floor(microSecondsDiff / 1000);
+    let nowTimeStamp = new Date();
+    let startTime = (new Date(initialTime)).getTime();
+    let deleteTimeStamp = nowTimeStamp.getTime();
+    let microSecondsDiff = Math.abs(deleteTimeStamp - startTime);
+    let timeDiff = Math.floor(microSecondsDiff / 1000);
     addToTimeStorage(timeDiff);
     localStorage.setItem("customer", JSON.stringify(retrievedNames));
     filterCustomers()
 };
 
-function getSpecificClientInfo() {
-    var displayAverageTimes = localStorage.getItem("AverageTimeStorage");
-    var retrievedAverageTimes = JSON.parse(displayAverageTimes);
+getSpecificClientInfo = () => {
+    let displayAverageTimes = localStorage.getItem("AverageTimeStorage");
+    let retrievedAverageTimes = JSON.parse(displayAverageTimes);
     window.customerInput = document.getElementById('customerNumber').value;
-    for (var i = 0; i < retrievedAverageTimes.length; i++) {
+    for (i = 0; i < retrievedAverageTimes.length; i++) {
         if (retrievedAverageTimes[i].number == customerInput) {
 
-            var customerName = retrievedAverageTimes[i].name;
-            var initialSecs = retrievedAverageTimes[i].average;
-            var currentSecs = initialSecs;
+            customerName = retrievedAverageTimes[i].name;
+            initialSecs = retrievedAverageTimes[i].average;
+            currentSecs = initialSecs;
 
             setTimeout(decrement, 1000);
 
             function decrement() {
-                var displayedSecs = currentSecs % 60;
-                var displayedMin = Math.floor(currentSecs / 60) % 60;
+                displayedSecs = currentSecs % 60;
+                displayedMin = Math.floor(currentSecs / 60) % 60;
 
                 if (displayedMin <= 9) displayedMin = "0" + displayedMin;
                 if (displayedSecs <= 9) displayedSecs = "0" + displayedSecs;
@@ -190,8 +192,8 @@ function getSpecificClientInfo() {
                 if (currentSecs !== -1) setTimeout(decrement, 1000);
             }
         } else if (retrievedAverageTimes[i].number !== customerInput) {
-            setTimeout(function () {
-                var wrongNumber = 'Prašome patikslinti numerį.';
+            setTimeout(() => {
+                wrongNumber = 'Prašome patikslinti numerį.';
                 document.getElementById('timerText').innerHTML = wrongNumber;
             }, 2000);
         }
