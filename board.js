@@ -15,7 +15,7 @@ function filterSpecialistTime() {
         }
         var id = j;
         var count = retrievedTime.filter((obj) => obj.specialist == id).length;
-        average = timeSum / count;
+        average = Math.floor(timeSum / count);
         var clientCount = 0;
         displayCustomers(average, clientCount, j)
         customer = "";
