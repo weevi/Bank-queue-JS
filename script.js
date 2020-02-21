@@ -83,6 +83,10 @@ getCurrentTime = () => {
 }
 
 saveInputValue = () => {
+    if (window.localStorage.length == false) {
+        noDataMessage = 'Paspauskite "Įkelti Dummy Data"';
+        alert(noDataMessage);
+    } else {
     let displayNames = JSON.parse(localStorage.getItem("customer"));
     let newClientNo = generateNewClientNo();
     let time = getCurrentTime();
@@ -93,8 +97,9 @@ saveInputValue = () => {
     let newCustomer = { "specialistNo": Number(selectedSpecialist), "name": inputValue, "clientNo": newClientNo, "startTime": time };
     displayNames.push(newCustomer);
     localStorage.setItem("customer", JSON.stringify(displayNames));
-    alert('Uzregistruota sekmingai!');
+    alert('Užregistruota sėkmingai!');
     window.location.reload()
+};
 };
 
 setSpecialist = () => {
