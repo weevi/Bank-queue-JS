@@ -104,6 +104,7 @@ label {
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
+  background-color: white;
   -webkit-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
   transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
   /* easeInOutCirc */
@@ -111,6 +112,8 @@ label {
   transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
   /* easeInOutCirc */
   z-index: 10;
+  color: white;
+
 }
 
 .link {
@@ -151,7 +154,6 @@ label {
 }
 
 @media screen and (max-width: 767px) {
-
   .navbar a {
       padding: 14px 0px;
   }
@@ -170,11 +172,6 @@ label {
 
 
 @media screen and (max-width: 550px) {
-
-  .nav {
-    background-color: white;
-  }
-
   .link:last-child {
       padding-right: 30px;
   }
