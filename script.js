@@ -204,3 +204,19 @@ getSpecificClientInfo = () => {
         }
     }
 }
+
+var nav = document.getElementById("nav-slide");
+var burger = document.getElementById("burger-slide");
+
+nav.addEventListener('click', navHide);
+burger.addEventListener('click', burgerHide);
+
+function navHide() {
+     nav.style.top="-250px";
+    burger.style.right="0";
+}
+
+function burgerHide() {
+    nav.style.top="0";
+    burger.style.right="-100px";
+}
