@@ -176,6 +176,12 @@ label {
   .link:last-child {
       padding-right: 30px;
   }
+
+  .title-wrap {
+    padding-bottom: 10px;
+    padding-top: 30px;
+  }
+
 }
 
 @media screen and (max-width: 480px) {
