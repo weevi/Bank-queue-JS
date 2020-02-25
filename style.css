@@ -57,12 +57,7 @@ label {
   padding: 20px;
 }
 
-.name-wrap h4 {
-  font-size: 2em;
-  text-align: center;
-  padding-bottom: 20px;
-  padding-top: 20px;
-}
+
 
 .time-wrap h4 {
   font-size: 3em;
@@ -83,7 +78,7 @@ label {
   padding: 20px;
 }
 
-.col-lg-7 {
+.main-wrap {
   background-color: #e7eaf4;
   margin-top: 50px;
   padding: 0 100px 50px 100px;
@@ -158,9 +153,15 @@ label {
       padding: 14px 0px;
   }
 
-  .hero-text span {
-      font-size: 1.4em;
+  .title-wrap h4 {
+    line-height: 1.2em;
+    font-size: 1.2em;
   }
+
+  .h4-wrap {
+
+  }
+
   .nav {
       top: -250px;
   }
@@ -181,34 +182,5 @@ label {
   .link {
       -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  }
-
-  .wrapper {
-      padding-right: 0;
-  }
-
-  .sidenav a {
-      font-size: 50px;
-  }
-  .fullscreen {
-      height: 100%;
-  }
-  .fullscreen a {
-      font-size: 40px;
-  }
-
-  .hero-text span {
-      font-size: 1.1em;
-  }
-  .mainwrap {
-      padding-bottom: 15px;
-  }
-
-  ul {
-      padding-left: 15px;
-  }
-
-  .about-text {
-      padding-left: 15px;
   }
 }
