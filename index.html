@@ -44,7 +44,7 @@
 
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-sm-7 main-wrap">
+        <div class="col-lg-7 main-wrap">
           <div class="title-wrap">
             <h4 class="h4-wrap">
               Prašome įvesti savo vardą, pavardę ir pasirinkti specialistą:
@@ -52,14 +52,14 @@
           </div>
           <form>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Vardas ir Pavardė:</label>
+              <label class="name-label" for="exampleFormControlInput1">Vardas ir Pavardė:</label>
               <input
                 id="myInput"
                 class="center-block"
                 type="text"
                 name="name"
                 />
-              <label for="exampleFormControlInput1"
+              <label class="spec-label" for="exampleFormControlInput1"
                 >Pasirinkite specialistą:</label
               >
               <select class="form-control" id="selectedSpecialist" onchange="setSpecialist()">
@@ -74,8 +74,8 @@
             </div>
           </form>
 
-          <button type="button" onclick="saveInputValue();">Įvesti Naują Klientą</button>
-          <button type="button" onclick="loadDataToLocalSt(setInitialTime());">
+          <button class="submit-client" type="button" onclick="saveInputValue();">Įvesti Naują Klientą</button>
+          <button class="dummy-data" type="button" onclick="loadDataToLocalSt(setInitialTime());">
             <strong>Įkelti Dummy Data</strong>
           </button>
           <p id="demo"></p>
